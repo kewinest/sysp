@@ -47,7 +47,7 @@ optparams=[];
 for i =1:6
     yexpopt = yexp(i,:);
     guess = [kcl V(i)];
-    options = optimoptions('lsqnonlin','Display','none');
+    options = optimoptions('lsqnonlin','Display','none','Algorithm','levenberg-marquardt');
     [x_opt, resnorm] = lsqnonlin(@(x1) AUCcostfxnD0b(x1, texp, yexpopt), guess, 0, 100, options);
     optparams=[optparams;x_opt];  
     resnorm
@@ -163,17 +163,5 @@ for i = 1:6
     writematrix([tf, yf(:,1)], FILE_NAME)
 end
  
-%%
-i=1
-[aucb,tb,yb] = caffeinesimbc(q0, Dexp,ka,optparams(i,1), optparams(i,2));
-tb = [delaytime;tb+1.5];
-yb = [delayconc;yb];
-figure;
-plot(tb, yb,'b-', 'LineWidth', 2)   
-hold on
-scatter(texp+1.5, yexp(1,:));
-figure;
-plot(tb, yb - yexp(1,:), 'ro');
-title('Residuals (Model - Data)');
-xlabel('Time (hrs)');
-ylabel('Residual (mg/L)'); 
+
+

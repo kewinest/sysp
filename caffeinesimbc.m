@@ -52,6 +52,8 @@ BalanceD = DrugIn - DrugOut - CurrentDrug(:,1) - CurrentDrug(:,3) + InitialDrug 
 % end
 AUC=trapz(T1,Y1(:,1));
 %% RETURN OUTPUTS
+% 
+
 
 out1 = AUC;
 out2 = T1;

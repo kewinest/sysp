@@ -1,4 +1,4 @@
-function [out1,out2,out3] = caffeinesimef(q0, D0,kA,kcl, V) 
+function [out1,out2,out3] = caffeinesimef(D1, D2, D3, kA,kcl, V) 
 % returns three outputs; receives four parameters. These can be modified as
 % needed to return more/fewer outputs or receive more/fewer parameters. As 
 % a general rule, pass the parameters/variables you think you will need,

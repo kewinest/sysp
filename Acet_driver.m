@@ -200,3 +200,5 @@ switch runsim
         exportgraphics(fig2, 'Fig2_AUCvsDose.png','Resolution',300); 
 
 end
+
+
