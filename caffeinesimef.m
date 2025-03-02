@@ -1,18 +1,5 @@
-function [out1,out2,out3] = caffeinesimef(D1, D2, D3, kA,kcl, V) 
-% returns three outputs; receives four parameters. These can be modified as
-% needed to return more/fewer outputs or receive more/fewer parameters. As 
-% a general rule, pass the parameters/variables you think you will need,
-% rather than passing everything.
+function [out1,out2,out3] = caffeinesimef(q0, D0,kA,kcl, V) 
 
-% Acetaminophen - simulation code, for setting up the parameter values and
-% calling the ode solver
-
-%% PARAMETER VALUES
-% note some of these values are passed in from the driver
-% it's actually unnecessary to change the names (e.g. q = q0), you could
-% just use the names above. The only reason I do it here is to emphasize
-% where they come from, and to leave it flexible and easy to change which
-% parameters get passed.
 
 p.q = q0; % 
 p.V = V; % mL
@@ -77,5 +64,6 @@ end
 out1 = AUC;
 out2 = T1;
 out3 = Y1(:,1);
+% disp(BalanceD(end) < 1e-6)
 
 end

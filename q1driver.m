@@ -50,10 +50,9 @@ for i =1:6
     options = optimoptions('lsqnonlin','Display','none','Algorithm','levenberg-marquardt');
     [x_opt, resnorm] = lsqnonlin(@(x1) AUCcostfxnD0b(x1, texp, yexpopt), guess, 0, 100, options);
     optparams=[optparams;x_opt];  
-    resnorm
 end
 
-
+disp("Disproblem1b")
 kcls = optparams(:,1)
 Vs = optparams(:,2)
 Vds = [];
@@ -72,7 +71,7 @@ for i =1:6
     optparams2=[optparams2;x_opt];  
 end
 
-
+disp("Disproblem1c")
 kcls = optparams2(:,1)
 Vs = optparams2(:,2)
 Vds = [];
@@ -91,11 +90,11 @@ for i =1:6
     yexpopt = yexp(i,:);
     guess = [kcl, V(i)];
     options = optimoptions('lsqnonlin','Display','none','Algorithm','levenberg-marquardt');
-    [x_opt, resnorm] = lsqnonlin(@(x1) AUCcostfxnD0e(x1, texp, yexpopt), guess, [], [], options);
+    [x_opt, resnorm] = lsqnonlin(@(x1) AUCcostfxnD0e(x1, texp+1.5, yexpopt), guess, [], [], options);
     optparams3=[optparams3;x_opt];  
 end
 
-
+disp("Disproblem1e")
 kcls = optparams3(:,1)
 Vs = optparams3(:,2)
 Vds = [];
@@ -111,11 +110,11 @@ for i =1:6
     yexpopt = yexp(i,:);
     guess = [kcl, V(i), ka];
     options = optimoptions('lsqnonlin','Display','none','Algorithm','levenberg-marquardt');
-    [x_opt, resnorm] = lsqnonlin(@(x1) AUCcostfxnD0f(x1, texp, yexpopt), guess, [], [], options);
+    [x_opt, resnorm] = lsqnonlin(@(x1) AUCcostfxnD0f(x1, texp+1.5, yexpopt), guess, [], [], options);
     optparams4=[optparams4;x_opt];  
 end
 
-
+disp("Disproblem1f")
 kcls = optparams4(:,1)
 Vs = optparams4(:,2)
 Vds = [];
@@ -130,9 +129,9 @@ kas = optparams4(:,3)
 %%
 %b
 
-
-delayconc = [0;0]
-delaytime = [0;1.5]
+Dexp = 50;
+delayconc = [0;0];
+delaytime = [0;1.5];
 for i = 1:6
     [aucb,tb,yb] = caffeinesimbc(q0, Dexp,ka,optparams(i,1), optparams(i,2));
     FILE_NAME = sprintf('problemb_subject%d', i);
@@ -151,11 +150,13 @@ for i = 1:6
     writematrix([tc, yc(:,1)], FILE_NAME)
 end
 
+Dexp = 80;
 for i = 1:6
     [auce,te,ye] = caffeinesimef(q0, Dexp,ka,optparams3(i,1), optparams3(i,2));
     FILE_NAME = sprintf('probleme_subject%d', i);
     writematrix([te, ye(:,1)], FILE_NAME)
 end
+
 
 for i = 1:6
     [aucf,tf,yf] = caffeinesimef(q0, Dexp,optparams4(i,3),optparams4(i,1), optparams4(i,2));
@@ -163,5 +164,3 @@ for i = 1:6
     writematrix([tf, yf(:,1)], FILE_NAME)
 end
  
-
-

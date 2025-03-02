@@ -1,8 +1,8 @@
-function AUCcostout = AUCcostfxnD0e(x1, texp,yexp)
+function AUCcostout = AUCcostfxnD0f(x1, texp,yexp)
 
-q0 = 0; % ug/hr
-Dexp = 50; % ug/ml (will be * ml = ug)
-kA = x1(3); % hr-1
+q0 = 0;
+Dexp = 80; 
+kA = x1(3); 
 kcL = x1(1);
 V = x1(2);
 
